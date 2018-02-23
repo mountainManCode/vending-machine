@@ -9,6 +9,7 @@
   "author": "Aaron Griffiths",
   "license": "ISC",
   "dependencies": {
+    "eslint-plugin-jest": "^21.12.2",
     "jest": "^22.4.2"
   },
   "devDependencies": {
