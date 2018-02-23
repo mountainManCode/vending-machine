@@ -8,16 +8,24 @@ describe('Vending Machine', () => {
       expect(result).toEqual([['Snickers', 20], ['Coke', 20]]);
     });
   });
-  describe('Expel the item from the vending machine', () => {
+
+  describe('Get the item from the vending machine when customer inserts coins >= cost of item ', () => {
     test('Should reduce the count of the item by 1', () => {
-      const result = VendingMachine.getItem('Snickers', 1);
-      expect(result).toEqual('Name: Snickers, Quantity: 19');
+      const result = VendingMachine.getItem('Coke', 1.25, 1);
+      expect(result).toEqual('Name: Coke, Quantity: 19');
     });
   });
-  // describe('Restock the inventory of the products', () => {
-  //   test('Should be able restock the invetory of products', () => {
-  //     const result = VendingMachine.restockInventory();
-  //     expect(result).toEqual();
-  //   });
-  // });
+
+  describe('Restock the inventory of the product', () => {
+    test('Should be able restock the item in the inventory', () => {
+      const result = VendingMachine.restockInventory('Snickers', 5);
+      expect(result).toEqual('Total Snickers: 25');
+    });
+  });
 });
+
+// describe('Get the item from the vending machine', () => {
+//   test('Should reduce the count of the item by 1', () => {
+//     const result = VendingMachine.getItem('Coke', 1.25, 1);
+//     expect(result).toEqual('Name: Coke, Quantity: 19');
+//   });
