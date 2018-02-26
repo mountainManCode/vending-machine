@@ -55,6 +55,34 @@ class VendingMachine {
     return 'Error, try again.';
   }
 
+  restockCoinInventory(coinName, quantity) {
+    if (typeof coinName !== 'string' || typeof quantity !== 'number') {
+      return 'Error, enter correct arguments.';
+    }
+
+    if (coinName === this.toony.name) {
+      const newQuantity = this.toony.quantity + quantity;
+      return `Total ${coinName}: ${newQuantity}`;
+    }
+    if (coinName === this.loony.name) {
+      const newQuantity = this.loony.quantity + quantity;
+      return `Total ${coinName}: ${newQuantity}`;
+    }
+    if (coinName === this.quarter.name) {
+      const newQuantity = this.quarter.quantity + quantity;
+      return `Total ${coinName}s: ${newQuantity}`;
+    }
+    if (coinName === this.dime.name) {
+      const newQuantity = this.dime.quantity + quantity;
+      return `Total ${coinName}s: ${newQuantity}`;
+    }
+    if (coinName === this.nickel.name) {
+      const newQuantity = this.nickel.quantity + quantity;
+      return `Total ${coinName}s: ${newQuantity}`;
+    }
+    return 'Error, try again.';
+  }
+
   dispenseItem(coins, selection) {
     if (typeof coins !== 'object') {
       return 'Error, coins must be an object.';

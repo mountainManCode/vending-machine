@@ -29,6 +29,13 @@ describe('Vending Machine', () => {
     });
   });
 
+  describe('Restock the inventory of the money', () => {
+    test('Should be able restock the coins in the inventory', () => {
+      const result = VendingMachine.restockCoinInventory('Quarter', 25);
+      expect(result).toEqual('Total Quarters: 125');
+    });
+  });
+
   describe('When the arguments of the Restock are entered incorrectly', () => {
     test('Should be given an error message', () => {
       const result = VendingMachine.restockInventory('Snickers', '5');
