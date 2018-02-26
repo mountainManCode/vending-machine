@@ -18,7 +18,6 @@ class VendingMachine {
     this.quarterTotal = 0;
     this.dimeTotal = 0;
     this.nickelTotal = 0;
-    // this.total = purchasePower;
   }
 
   displayInventory() {
@@ -30,6 +29,9 @@ class VendingMachine {
   }
 
   restockInventory(itemName, quantity) {
+    if (typeof itemName !== 'string' || typeof quantity !== 'number') {
+      return 'Error, enter correct arguments.';
+    }
     if (itemName === this.item1.name) {
       const newQuantity = this.item1.quantity + quantity;
       return `Total ${itemName}: ${newQuantity}`;
@@ -42,12 +44,14 @@ class VendingMachine {
   }
 
   dispenseItem(coins, selection) {
-    if (typeof coins !== 'object') {
-      return 'Error, Coins must be an Object({Coin: Quantity}).';
+    if (typeof coins !== 'object' || typeof selection !== 'string') {
+      return 'Error';
     }
-    if (typeof selection !== 'string') {
-      return 'Error, Selection must be a String.';
+    if (selection.length === 0) {
+      return 'Please, make a selection.';
     }
+
+    // Sums up the total value of coins inserted.
     Object.entries(coins).forEach(([coin, quantity]) => {
       // console.log(`${coin} ${quantity}`);
       if (coin === this.toony.name) {
@@ -70,34 +74,33 @@ class VendingMachine {
       }
       this.purchasePower =
         this.toonyTotal + this.loonyTotal + this.quarterTotal + this.dimeTotal + this.nickelTotal;
-      // return purchasePower;
     });
-    // console.log(this.purchasePower);
+
+    // If purchasingPower is >= Item value - Dispenses Item.
     if (selection === this.item1.name && this.purchasePower < this.item1.cost) {
       return 'Insert more coins';
     } else if (selection === this.item1.name && this.purchasePower === this.item1.cost) {
       const newQuantity = this.item1.quantity - 1;
       return `Dispensing ${selection}, Change: 0, Quantity Left: ${newQuantity}`;
     } else if (selection === this.item1.name && this.purchasePower > this.item1.cost) {
-      const change = this.purchasePower - this.item1.cost;
-      return `Dispense ${selection}, Change: ${change}`;
+      const change = Math.ceil(100 * (this.purchasePower - this.item1.cost)) / 100;
+      return `Dispensing ${selection}, Change: ${change.toFixed(2)}`;
     }
 
+    // If purchasingPower is >= Item value - Dispenses Item.
     if (selection === this.item2.name && this.purchasePower < this.item2.cost) {
       return 'Insert more coins';
     } else if (selection === this.item2.name && this.purchasePower === this.item2.cost) {
       const newQuantity = this.item2.quantity - 1;
       return `Dispensing ${selection}, Change: 0, Quantity Left: ${newQuantity}`;
     } else if (selection === this.item2.name && this.purchasePower > this.item2.cost) {
-      const change = this.purchasePower - this.item2.cost;
-      return `Dispense ${selection}, Change: ${change}`;
+      const change = Math.ceil(100 * (this.purchasePower - this.item2.cost)) / 100;
+      return `Dispensing ${selection}, Change: ${change.toFixed(2)}`;
     }
-    return null;
+    return 'Please, insert coins.';
   }
 
   getItem(itemName, payment, quantity) {
-    // const inventoryProduct = [this.item1, this.item2];
-
     if (itemName === this.item1.name && payment >= this.item1.cost) {
       const newQuantity = this.item1.quantity - quantity;
       return `Name: ${itemName}, Quantity: ${newQuantity}`;
