@@ -11,14 +11,17 @@ class Payment {
 
     this.item1 = product.snickers;
     this.item2 = product.coke;
-  }
-
-  payUp(coins) {
     this.toonyTotal = 0;
     this.loonyTotal = 0;
     this.quarterTotal = 0;
     this.dimeTotal = 0;
     this.nickelTotal = 0;
+  }
+
+  payUp(coins, item) {
+    if (typeof coins !== 'object') {
+      return 'Error, Coins must be an Object({Coin: Quantity})';
+    }
 
     Object.entries(coins).forEach(([coin, quantity]) => {
       // console.log(`${coin} ${quantity}`);
@@ -31,61 +34,28 @@ class Payment {
       }
       if (coin === this.quarter.name) {
         this.quarterTotal = this.quarter.value * quantity;
-        console.log(this.quarterTotal);
+        // console.log(this.quarterTotal);
       }
       if (coin === this.dime.name) {
         this.dimeTotal = this.dime.value * quantity;
-        console.log(this.dimeTotal);
+        // console.log(this.dimeTotal);
       }
       if (coin === this.nickel.name) {
         this.nickelTotal = this.nickel.value * quantity;
       }
-
-      // this.total =
-      //   this.toonyTotal + this.loonyTotal + this.quarterTotal + this.dimeTotal + this.nickelTotal;
-      // console.log(this.total);
+      this.total =
+        this.toonyTotal + this.loonyTotal + this.quarterTotal + this.dimeTotal + this.nickelTotal;
     });
-    console.log(
-      this.toonyTotal,
-      this.loonyTotal,
-      this.quarterTotal,
-      this.dimeTotal,
-      this.nickelTotal,
-    );
-    const total =
-      this.toonyTotal + this.loonyTotal + this.quarterTotal + this.dimeTotal + this.nickelTotal;
-    return total;
+    // console.log(
+    //   this.toonyTotal,
+    //   this.loonyTotal,
+    //   this.quarterTotal,
+    //   this.dimeTotal,
+    //   this.nickelTotal,
+    // );
+
+    return `Purchasing Power: $ ${this.total}`;
   }
 }
 
 module.exports = new Payment();
-
-// if (coin !== this.toony.name) {
-//   this.toonyTotal = 0;
-//   console.log(this.toonyTotal);
-// } else {
-//   this.toonyTotal = this.toony.value * quantity;
-//   console.log(this.toonyTotal);
-// }
-// if (coin === this.loony.name) {
-//   this.loonyTotal = this.loony.value * quantity;
-// } else {
-//   this.loonyTotal = 0;
-// }
-// if (coin === this.quarter.name) {
-//   // console.log(this.quarter.name);
-//   this.quarterTotal = this.quarter.value * quantity;
-// } else {
-//   this.quarterTotal = 0;
-// }
-// if (coin === this.dime.name) {
-//   this.dimeTotal = this.dime.value * quantity;
-// } else {
-//   this.dimeTotal = 0;
-//   // console.log(this.dimeTotal);
-// }
-// if (coin === this.nickel.name) {
-//   this.nickelTotal = this.nickel.value * quantity;
-// } else {
-//   this.nickelTotal = 0;
-// }
