@@ -1,9 +1,4 @@
 const { product } = require('../_mocks_/productInventory');
-// const { coins } = require('../_mocks_/coinInventory');
-
-// const {
-//   toony, loony, quarter, dime, nickel,
-// } = require('./inventoryMoney');
 
 class VendingMachine {
   constructor() {
@@ -25,11 +20,11 @@ class VendingMachine {
 
     if (itemName === this.item1.name && payment >= this.item1.cost) {
       const newQuantity = this.item1.quantity - quantity;
-      return `Name: ${itemName}, Quantity: ${newQuantity}`;
+      return `Name: ${itemName}, Quantity Left: ${newQuantity}`;
     }
     if (itemName === this.item2.name && payment >= this.item2.cost) {
       const newQuantity = this.item2.quantity - quantity;
-      return `Name: ${itemName}, Quantity: ${newQuantity}`;
+      return `Name: ${itemName}, Quantity Left: ${newQuantity}`;
     }
     return null;
   }

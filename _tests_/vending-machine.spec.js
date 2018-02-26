@@ -9,7 +9,7 @@ describe('Vending Machine', () => {
     });
   });
 
-  describe('Get the item from the vending machine when customer inserts coins >= cost of item ', () => {
+  describe('Get the item from the vending machine when customer payment >= cost of item', () => {
     test('Should reduce the count of the item by 1', () => {
       const result = VendingMachine.getItem('Coke', 1.25, 1);
       expect(result).toEqual('Name: Coke, Quantity: 19');

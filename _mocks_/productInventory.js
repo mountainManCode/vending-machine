@@ -14,6 +14,4 @@ const product = {
 
 module.exports = {
   product,
-  // snickers,
-  // coke,
 };

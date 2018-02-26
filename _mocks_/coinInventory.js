@@ -1,14 +1,14 @@
-const coins = {
+const money = {
   toony: {
     name: 'Toony',
     quantity: 100,
-    value: 2,
+    value: 2.0,
   },
 
   loony: {
     name: 'Loony',
     quantity: 100,
-    value: 1,
+    value: 1.0,
   },
 
   quarter: {
@@ -30,4 +30,4 @@ const coins = {
   },
 };
 
-module.exports = { coins };
+module.exports = { money };
