@@ -28,6 +28,17 @@ class VendingMachine {
     return inventoryProduct;
   }
 
+  displayCoinInventory() {
+    const inventoryCoins = [
+      [this.toony.name, this.toony.quantity],
+      [this.loony.name, this.loony.quantity],
+      [this.quarter.name, this.quarter.quantity],
+      [this.dime.name, this.dime.quantity],
+      [this.nickel.name, this.nickel.quantity],
+    ];
+    return inventoryCoins;
+  }
+
   restockInventory(itemName, quantity) {
     if (typeof itemName !== 'string' || typeof quantity !== 'number') {
       return 'Error, enter correct arguments.';

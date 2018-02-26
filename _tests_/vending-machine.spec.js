@@ -9,6 +9,19 @@ describe('Vending Machine', () => {
     });
   });
 
+  describe('Display the inventory of the money', () => {
+    test('Should be able to fetch and display the inventory of money', () => {
+      const result = VendingMachine.displayCoinInventory();
+      expect(result).toEqual([
+        ['Toony', 100],
+        ['Loony', 100],
+        ['Quarter', 100],
+        ['Dime', 100],
+        ['Nickel', 100],
+      ]);
+    });
+  });
+
   describe('Restock the inventory of the product', () => {
     test('Should be able restock the item in the inventory', () => {
       const result = VendingMachine.restockInventory('Snickers', 5);
