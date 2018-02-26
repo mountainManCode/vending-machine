@@ -32,6 +32,7 @@ class VendingMachine {
     if (typeof itemName !== 'string' || typeof quantity !== 'number') {
       return 'Error, enter correct arguments.';
     }
+
     if (itemName === this.item1.name) {
       const newQuantity = this.item1.quantity + quantity;
       return `Total ${itemName}: ${newQuantity}`;
@@ -40,12 +41,15 @@ class VendingMachine {
       const newQuantity = this.item2.quantity + quantity;
       return `Total ${itemName}: ${newQuantity}`;
     }
-    return null;
+    return 'Error, try again.';
   }
 
   dispenseItem(coins, selection) {
-    if (typeof coins !== 'object' || typeof selection !== 'string') {
-      return 'Error';
+    if (typeof coins !== 'object') {
+      return 'Error, coins must be an object.';
+    }
+    if (typeof selection !== 'string') {
+      return 'Error, selection must be a string.';
     }
     if (selection.length === 0) {
       return 'Please, make a selection.';

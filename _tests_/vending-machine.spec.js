@@ -31,7 +31,7 @@ describe('Vending Machine', () => {
   });
 
   describe('When no selction is made', () => {
-    test('Should return Please, insert coins.', () => {
+    test('Should return Please, make a selection.', () => {
       const result = VendingMachine.dispenseItem({ Loony: 1, Dime: 2, Nickel: 1 }, '');
       expect(result).toEqual('Please, make a selection.');
     });
@@ -39,25 +39,25 @@ describe('Vending Machine', () => {
 
   describe('When no arguments have been made', () => {
     test('Should return an error.', () => {
-      const result = VendingMachine.dispenseItem();
-      expect(result).toEqual('Error');
+      const result = VendingMachine.dispenseItem({ Loony: 1, Dime: 2, Nickel: 1 }, ['Snickers']);
+      expect(result).toEqual('Error, selection must be a string.');
     });
   });
 
-  // describe('When t', () => {
-  //   test('Should return an error.', () => {
-  //     const result = VendingMachine.dispenseItem();
-  //     expect(result).toEqual('Error');
-  //   });
-  // });
-
-  // describe('When the total of inserted coins is less than the value of the item', () => {
-  //   test('Should return "Insert more coins".', () => {
-  //     const result = VendingMachine.dispenseItem({ Dime: 1, Nickel: 1 }, 'Snickers');
-  //     expect(result).toEqual('Insert more coins');
-  //   });
-  // });
+  describe('When the coins entered is not in an object', () => {
+    test('Should return Please, insert coins.', () => {
+      const result = VendingMachine.dispenseItem('Toony', 'Snickers');
+      expect(result).toEqual('Error, coins must be an object.');
+    });
+  });
 });
+
+// describe('When the total of inserted coins is less than the value of the item', () => {
+//   test('Should return "Insert more coins".', () => {
+//     const result = VendingMachine.dispenseItem({ Dime: 1, Nickel: 1 }, 'Snickers');
+//     expect(result).toEqual('Insert more coins');
+//   });
+// });
 
 // describe('When the total of inserted coins strictly equal the value of the item', () => {
 //   test('Should return the product purchased.', () => {
